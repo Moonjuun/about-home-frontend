@@ -25,6 +25,7 @@
 - [x] **국토교통부 API**: 국토교통부 API를 통해 정확한 정보 제공
 - [x] **다양한 정보 제공**: 공시지가, 실거래가, 전세 실거래가 등의 거래 내역 제공
 - [x] **최우선변제권**: 보증금, 월세 입력시 해당 소재지의 최우선 변제권을 보여주는 기능 구현
+- [x] **사용자 친화적 기능**: 진단 페이지에서 권리사항 체크 시 결과 페이지에서 해당 체크한 부분만 open 기능 구현
 
 ## 🔮 Demo
 ### 1. 진단하기
@@ -48,14 +49,13 @@
 ### 4. 결과 페이지 - 확인사항
 
 <img src="https://user-images.githubusercontent.com/98331852/241632856-d28f5834-1ac0-45ce-919d-f9a9fb0559c1.png" width="50%">
-
 - 최우선변제권, 그 외 권리사항 확인 가능
 
 
 
 ## 🛠 Tech Stack
 ### Frontend
-`React`, `Next.JS`, `BootStrap`, `Responsive Web`, `AWS EC2`
+`React`, `Next.JS`, `BootStrap`, `Recharts`, `styled-components`, `Responsive Web`, `AWS EC2`
 
 ## Site
 https://about-home.net
