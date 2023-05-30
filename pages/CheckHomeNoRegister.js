@@ -158,7 +158,12 @@ const CheckHomeNoRegister = () => {
             <Form.Label>
               <h5 style={{ marginTop: "20px" }}>소재지</h5>
             </Form.Label>{" "}
-            <Button type="button" onClick={handleOpenPostcode} size="sm">
+            <Button
+              type="button"
+              onClick={handleOpenPostcode}
+              style={{ marginBottom: "5px", marginLeft: "5px" }}
+              size="sm"
+            >
               검색
             </Button>
             {showDaumPostcode && (

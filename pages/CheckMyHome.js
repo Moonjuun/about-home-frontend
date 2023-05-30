@@ -401,6 +401,7 @@ const CheckMyHome = () => {
                         type="button"
                         onClick={handleOpenPostcode}
                         size="sm"
+                        style={{ marginBottom: "5px", marginLeft: "5px" }}
                       >
                         검색
                       </Button>
@@ -446,7 +447,7 @@ const CheckMyHome = () => {
                         </Form.Label>
                         <div ref={ref}>
                           <Button
-                            style={{ marginTop: "40px", marginLeft: "10px" }}
+                            style={{ marginTop: "30px", marginLeft: "10px" }}
                             onClick={handleClick}
                             variant="outline-primary"
                             size="sm"
@@ -558,13 +559,13 @@ const CheckMyHome = () => {
                         style={{ display: "flex", alignItems: "center" }}
                       >
                         <Form.Label>
-                          <h5 style={{ marginTop: "20px" }}>
+                          <h5 style={{ marginTop: "40px" }}>
                             최초 설정 근저당
                           </h5>
                         </Form.Label>
                         <div ref={refCollateral}>
                           <Button
-                            style={{ marginTop: "10px", marginLeft: "10px" }}
+                            style={{ marginTop: "20px", marginLeft: "10px" }}
                             onClick={handleClick2}
                             variant="outline-primary"
                             size="sm"
