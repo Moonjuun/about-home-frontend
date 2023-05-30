@@ -10,6 +10,8 @@ import {
   Popover,
   Tab,
   Tabs,
+  Row,
+  Col,
 } from "react-bootstrap";
 import Head from "next/head";
 import DaumPostcode from "react-daum-postcode";
@@ -280,7 +282,15 @@ const CheckMyHome = () => {
               aria-controls="example-collapse-text"
               aria-expanded={open}
             >
-              <Badge pill bg="danger">
+              <Badge
+                pill
+                bg="danger"
+                style={{
+                  marginRight: "2px",
+                  fontSize: "14px",
+                  marginTop: "10px",
+                }}
+              >
                 등기부등본
               </Badge>
               이 있으면 더 정확하게 진단할 수 있어요!
@@ -465,70 +475,84 @@ const CheckMyHome = () => {
                         <h5>갑구 </h5>
                       </Form.Label>
                       <Form.Group>
-                        <Form.Check
-                          type="checkbox"
-                          name="purchaser"
-                          label="가처분"
-                          value="injunction"
-                          checked={inputVal.purchaser.includes("injunction")}
-                          onChange={handleCheckboxChangePurchaser}
-                          inline
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="purchaser"
-                          label="가등기"
-                          value="provisionalRegistration"
-                          checked={inputVal.purchaser.includes(
-                            "provisionalRegistration"
-                          )}
-                          onChange={handleCheckboxChangePurchaser}
-                          inline
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="purchaser"
-                          label="가압류 / 압류"
-                          value="provisionalSeizure"
-                          checked={inputVal.purchaser.includes(
-                            "provisionalSeizure"
-                          )}
-                          onChange={handleCheckboxChangePurchaser}
-                          inline
-                        />
-                        <Form.Check
-                          type="checkbox"
-                          name="purchaser"
-                          label="신탁"
-                          value="trust"
-                          checked={inputVal.purchaser.includes("trust")}
-                          onChange={handleCheckboxChangePurchaser}
-                          inline
-                        />
+                        <Row xs="auto">
+                          <Col>
+                            <Form.Check
+                              type="checkbox"
+                              name="purchaser"
+                              label="가처분"
+                              value="injunction"
+                              checked={inputVal.purchaser.includes(
+                                "injunction"
+                              )}
+                              onChange={handleCheckboxChangePurchaser}
+                            />
+                          </Col>
+
+                          <Col>
+                            <Form.Check
+                              type="checkbox"
+                              name="purchaser"
+                              label="신탁"
+                              value="trust"
+                              checked={inputVal.purchaser.includes("trust")}
+                              onChange={handleCheckboxChangePurchaser}
+                            />
+                          </Col>
+                          <Col>
+                            <Form.Check
+                              type="checkbox"
+                              name="purchaser"
+                              label="가등기"
+                              value="provisionalRegistration"
+                              checked={inputVal.purchaser.includes(
+                                "provisionalRegistration"
+                              )}
+                              onChange={handleCheckboxChangePurchaser}
+                            />
+                          </Col>
+                          <Col>
+                            <Form.Check
+                              type="checkbox"
+                              name="purchaser"
+                              label="가압류 / 압류"
+                              value="provisionalSeizure"
+                              checked={inputVal.purchaser.includes(
+                                "provisionalSeizure"
+                              )}
+                              onChange={handleCheckboxChangePurchaser}
+                            />
+                          </Col>
+                        </Row>
                       </Form.Group>
                       <Form.Label>
                         <h5 style={{ marginTop: "20px" }}>을구 </h5>
                       </Form.Label>
                       <Form.Group>
-                        <Form.Check
-                          type="checkbox"
-                          name="provider"
-                          label="임차권"
-                          value="leasehold"
-                          checked={inputVal.provider.includes("leasehold")}
-                          onChange={handleCheckboxChangeProvider}
-                          inline
-                        />
-
-                        <Form.Check
-                          type="checkbox"
-                          name="provider"
-                          label="전세권"
-                          value="LongtermRent"
-                          checked={inputVal.provider.includes("LongtermRent")}
-                          onChange={handleCheckboxChangeProvider}
-                          inline
-                        />
+                        <Row xs="auto">
+                          <Col>
+                            <Form.Check
+                              type="checkbox"
+                              name="provider"
+                              label="임차권"
+                              value="leasehold"
+                              checked={inputVal.provider.includes("leasehold")}
+                              onChange={handleCheckboxChangeProvider}
+                            />
+                          </Col>
+                          <Col>
+                            <Form.Check
+                              type="checkbox"
+                              name="provider"
+                              label="전세권"
+                              value="LongtermRent"
+                              checked={inputVal.provider.includes(
+                                "LongtermRent"
+                              )}
+                              onChange={handleCheckboxChangeProvider}
+                            />
+                          </Col>
+                        </Row>
                       </Form.Group>
                       <Form.Group
                         style={{ display: "flex", alignItems: "center" }}
