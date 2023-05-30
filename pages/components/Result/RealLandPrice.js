@@ -156,8 +156,6 @@ const RealLandPrice = ({ response2 }) => {
     return `${year}.${month}`;
   };
 
-  console.log(realPriceData.length);
-
   return (
     <>
       <Container>
