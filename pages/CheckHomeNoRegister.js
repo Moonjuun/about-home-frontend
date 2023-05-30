@@ -34,7 +34,7 @@ const CheckHomeNoRegister = () => {
   };
 
   // 카카오주소 API
-  const handleComplete = (data) => {
+  const handleComplete2 = (data) => {
     let fullAddress = data.address;
     let extraAddress = "";
     let jibunAddress = "";
@@ -72,7 +72,7 @@ const CheckHomeNoRegister = () => {
   };
 
   // 진단하기
-  const handleSubmit = async (e) => {
+  const handleSubmit2 = async (e) => {
     const form = e.currentTarget;
     console.log(form);
     if (form.checkValidity() === false) {
@@ -133,7 +133,7 @@ const CheckHomeNoRegister = () => {
         <LoadingPage />
       ) : (
         <Container style={{ minHeight: "70vh" }}>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form noValidate validated={validated} onSubmit={handleSubmit2}>
             <div
               style={{
                 fontWeight: "500",
@@ -164,7 +164,7 @@ const CheckHomeNoRegister = () => {
             {showDaumPostcode && (
               <div>
                 <DaumPostcode
-                  onComplete={handleComplete}
+                  onComplete={handleComplete2}
                   autoClose={true}
                   width={500}
                   height={600}
