@@ -62,8 +62,13 @@ const OfficialLandPrice = ({ response1 }) => {
         <h4 style={{ marginTop: "30px" }}>공시지가 데이터가 없습니다.</h4>
         <div>
           <h6>왜 공시지가 데이터가 없나요?</h6>
-          <li>건물 유형을 확인해주세요!!</li>
-          <li>신축 건물이면 아직 없을 수 있어요!</li>
+          <li>
+            <strong>건물 유형</strong>을 확인해주세요!!
+          </li>
+          <li>
+            <strong>신축 건물</strong>
+            이면 아직 없을 수 있어요!
+          </li>
         </div>
       </>
     );
