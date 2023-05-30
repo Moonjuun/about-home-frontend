@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { commaFormat } from "../../../utils/util";
 import {
   Button,
@@ -11,7 +11,6 @@ import {
 
 import {
   ResponsiveContainer,
-  AreaChart,
   Line,
   Area,
   XAxis,
@@ -24,6 +23,14 @@ import {
 } from "recharts";
 
 const RealLandPrice = ({ response2 }) => {
+  const [interval, setInterval] = useState(3); // 초기값은 웹 환경을 기준으로 3으로 설정
+
+  useEffect(() => {
+    if (realPriceData.length > 10) {
+      setInterval(5);
+    }
+  });
+
   //평균 실거래가, response2 받은 데이터를 리차트 형식에 맞게 변환
   let landPrice = [];
   let realPriceData = [];
@@ -149,6 +156,8 @@ const RealLandPrice = ({ response2 }) => {
     return `${year}.${month}`;
   };
 
+  console.log(realPriceData.length);
+
   return (
     <>
       <Container>
@@ -194,7 +203,7 @@ const RealLandPrice = ({ response2 }) => {
             <XAxis
               dataKey="date"
               label={{ value: "년.월", position: "bottom", offset: 0 }}
-              interval={3}
+              interval={interval}
             />
             <YAxis
               type="number"
