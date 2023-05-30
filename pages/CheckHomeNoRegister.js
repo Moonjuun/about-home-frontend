@@ -245,6 +245,10 @@ const CheckHomeNoRegister = () => {
                   <p>
                     3. 소재지만 입력해도 해당 소재지의 정보 조회가 가능해요.
                   </p>
+                  <p>
+                    4. 건물 종류는 <strong>건축물대장, 등기부등본</strong>을
+                    통해 확인 가능해요!
+                  </p>
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
