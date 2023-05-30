@@ -8,6 +8,8 @@ import {
   Badge,
   Overlay,
   Popover,
+  Tab,
+  Tabs,
 } from "react-bootstrap";
 import Head from "next/head";
 import DaumPostcode from "react-daum-postcode";
@@ -15,6 +17,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 
 import LoadingPage from "./LoadingPage";
+import CheckHomeNoRegister from "./CheckHomeNoRegister";
 
 const CheckMyHome = () => {
   const router = useRouter();
@@ -279,7 +282,7 @@ const CheckMyHome = () => {
             >
               <Badge pill bg="danger">
                 등기부등본
-              </Badge>{" "}
+              </Badge>
               이 있으면 더 정확하게 진단할 수 있어요!
             </a>
             <Collapse in={open}>
@@ -292,280 +295,311 @@ const CheckMyHome = () => {
               </div>
             </Collapse>
           </div>
+
           <section>
-            <Stack gap={2}>
-              <Form noValidate validated={validated} onSubmit={handleSubmit}>
-                <Form.Group
-                  className="mb-3"
-                  controlId="exampleForm.ControlInput1"
-                >
-                  <div
-                    style={{
-                      fontWeight: "500",
-                      marginTop: "30px",
-                      fontSize: "20px",
-                    }}
+            <Tabs
+              style={{ marginTop: "20px" }}
+              defaultActiveKey="CheckMyHome"
+              id="fill-tab-example"
+              className="mb-3"
+              fill
+            >
+              <Tab eventKey="CheckMyHome" title="등기부등본 O">
+                <Stack gap={2}>
+                  <Form
+                    noValidate
+                    validated={validated}
+                    onSubmit={handleSubmit}
                   >
-                    계약: <br />
-                    <input
-                      type="radio"
-                      name="contract"
-                      value="monthlyRent"
-                      checked={inputVal.contract === "monthlyRent"}
-                      onChange={handleRadioChange}
-                    />{" "}
-                    월세
-                    <input
-                      style={{ marginLeft: "10px" }}
-                      type="radio"
-                      name="contract"
-                      value="yearlyRent"
-                      checked={inputVal.contract === "yearlyRent"}
-                      onChange={handleRadioChange}
-                    />
-                    전세
-                  </div>
-                  <Form.Label>
-                    <h5 style={{ marginTop: "20px" }}>보증금</h5>
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="deposit"
-                    required
-                    value={inputVal.deposit}
-                    onChange={handleInputChange}
-                  />
-                  <Form.Label>
-                    <h5 style={{ marginTop: "20px" }}>월 임차료</h5>
-                  </Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="rentalFee"
-                    required
-                    value={inputVal.rentalFee}
-                    onChange={handleInputChange}
-                  />
-                  <div
-                    style={{
-                      fontWeight: "500",
-                      marginTop: "10px",
-                      fontSize: "20px",
-                    }}
-                  >
-                    건물 종류: <br />
-                    <Form.Select
-                      style={{ marginTop: "10px" }}
-                      value={building}
-                      onChange={handleBuildingChange}
+                    <Form.Group
+                      className="mb-3"
+                      controlId="exampleForm.ControlInput1"
                     >
-                      <option value="APART">아파트</option>
-                      <option value="HOUSE">
-                        다세대주택 / 연립주택 / 빌라 / 도시형 생활주택
-                      </option>
-                      <option value="OFFICETEL">오피스텔</option>
-                      <option value="TOWNHOUSE">단독주택 / 다가구주택</option>
-                    </Form.Select>
-                  </div>
-                  <Form.Label>
-                    <h5 style={{ marginTop: "20px" }}>소재지</h5>
-                  </Form.Label>{" "}
-                  <Button type="button" onClick={handleOpenPostcode} size="sm">
-                    검색
-                  </Button>
-                  {showDaumPostcode && (
-                    <div>
-                      <DaumPostcode
-                        onComplete={handleComplete}
-                        autoClose={true}
-                        width={500}
-                        height={600}
-                        animation
+                      <div
+                        style={{
+                          fontWeight: "500",
+                          marginTop: "30px",
+                          fontSize: "20px",
+                        }}
+                      >
+                        계약: <br />
+                        <input
+                          type="radio"
+                          name="contract"
+                          value="monthlyRent"
+                          checked={inputVal.contract === "monthlyRent"}
+                          onChange={handleRadioChange}
+                        />{" "}
+                        월세
+                        <input
+                          style={{ marginLeft: "10px" }}
+                          type="radio"
+                          name="contract"
+                          value="yearlyRent"
+                          checked={inputVal.contract === "yearlyRent"}
+                          onChange={handleRadioChange}
+                        />
+                        전세
+                      </div>
+                      <Form.Label>
+                        <h5 style={{ marginTop: "20px" }}>보증금</h5>
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="deposit"
+                        required
+                        value={inputVal.deposit}
+                        onChange={handleInputChange}
                       />
-                    </div>
-                  )}
-                  <Form.Control
-                    type="text"
-                    placeholder="우편번호"
-                    value={postcode}
-                    readOnly
-                  />
-                  <div>
-                    <Form.Control
-                      type="text"
-                      placeholder="주소"
-                      value={address}
-                      readOnly
-                    />
-                  </div>
-                  <div>
-                    <Form.Control
-                      type="text"
-                      placeholder="상세주소"
-                      value={detailAddress}
-                      onChange={(e) => setDetailAddress(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <Form.Group style={{ display: "flex", alignItems: "center" }}>
-                    <Form.Label>
-                      <h5 style={{ marginTop: "50px" }}>권리사항</h5>
-                    </Form.Label>
-                    <div ref={ref}>
+                      <Form.Label>
+                        <h5 style={{ marginTop: "20px" }}>월 임차료</h5>
+                      </Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="rentalFee"
+                        required
+                        value={inputVal.rentalFee}
+                        onChange={handleInputChange}
+                      />
+                      <div
+                        style={{
+                          fontWeight: "500",
+                          marginTop: "10px",
+                          fontSize: "20px",
+                        }}
+                      >
+                        건물 종류: <br />
+                        <Form.Select
+                          style={{ marginTop: "10px" }}
+                          value={building}
+                          onChange={handleBuildingChange}
+                        >
+                          <option value="APART">아파트</option>
+                          <option value="HOUSE">
+                            다세대주택 / 연립주택 / 빌라 / 도시형 생활주택
+                          </option>
+                          <option value="OFFICETEL">오피스텔</option>
+                          <option value="TOWNHOUSE">
+                            단독주택 / 다가구주택
+                          </option>
+                        </Form.Select>
+                      </div>
+                      <Form.Label>
+                        <h5 style={{ marginTop: "20px" }}>소재지</h5>
+                      </Form.Label>{" "}
                       <Button
-                        style={{ marginTop: "40px", marginLeft: "10px" }}
-                        onClick={handleClick}
-                        variant="outline-primary"
+                        type="button"
+                        onClick={handleOpenPostcode}
                         size="sm"
                       >
-                        참고
+                        검색
                       </Button>
-
-                      <Overlay
-                        show={show}
-                        target={target}
-                        placement="bottom"
-                        container={ref}
-                        containerPadding={20}
+                      {showDaumPostcode && (
+                        <div>
+                          <DaumPostcode
+                            onComplete={handleComplete}
+                            autoClose={true}
+                            width={500}
+                            height={600}
+                            animation
+                          />
+                        </div>
+                      )}
+                      <Form.Control
+                        type="text"
+                        placeholder="우편번호"
+                        value={postcode}
+                        readOnly
+                      />
+                      <div>
+                        <Form.Control
+                          type="text"
+                          placeholder="주소"
+                          value={address}
+                          readOnly
+                        />
+                      </div>
+                      <div>
+                        <Form.Control
+                          type="text"
+                          placeholder="상세주소"
+                          value={detailAddress}
+                          onChange={(e) => setDetailAddress(e.target.value)}
+                          required
+                        />
+                      </div>
+                      <Form.Group
+                        style={{ display: "flex", alignItems: "center" }}
                       >
-                        <Popover id="popover-contained ">
-                          <Popover.Body>
-                            1. 현재 등기부등본의 갑구/을구의 해당 사항을
-                            체크해주세요 <br />
-                            2. 해당 내용이 없으면 비워도 되요
-                          </Popover.Body>
-                        </Popover>
-                      </Overlay>
-                    </div>
-                  </Form.Group>
-                  <Form.Label>
-                    <h5>갑구 </h5>
-                  </Form.Label>
-                  <Form.Group>
-                    <Form.Check
-                      type="checkbox"
-                      name="purchaser"
-                      label="가처분"
-                      value="injunction"
-                      checked={inputVal.purchaser.includes("injunction")}
-                      onChange={handleCheckboxChangePurchaser}
-                      inline
-                    />
-                    <Form.Check
-                      type="checkbox"
-                      name="purchaser"
-                      label="가등기"
-                      value="provisionalRegistration"
-                      checked={inputVal.purchaser.includes(
-                        "provisionalRegistration"
-                      )}
-                      onChange={handleCheckboxChangePurchaser}
-                      inline
-                    />
-                    <Form.Check
-                      type="checkbox"
-                      name="purchaser"
-                      label="가압류 / 압류"
-                      value="provisionalSeizure"
-                      checked={inputVal.purchaser.includes(
-                        "provisionalSeizure"
-                      )}
-                      onChange={handleCheckboxChangePurchaser}
-                      inline
-                    />
-                    <Form.Check
-                      type="checkbox"
-                      name="purchaser"
-                      label="신탁"
-                      value="trust"
-                      checked={inputVal.purchaser.includes("trust")}
-                      onChange={handleCheckboxChangePurchaser}
-                      inline
-                    />
-                  </Form.Group>
-                  <Form.Label>
-                    <h5 style={{ marginTop: "20px" }}>을구 </h5>
-                  </Form.Label>
-                  <Form.Group>
-                    <Form.Check
-                      type="checkbox"
-                      name="provider"
-                      label="임차권"
-                      value="leasehold"
-                      checked={inputVal.provider.includes("leasehold")}
-                      onChange={handleCheckboxChangeProvider}
-                      inline
-                    />
+                        <Form.Label>
+                          <h5 style={{ marginTop: "50px" }}>권리사항</h5>
+                        </Form.Label>
+                        <div ref={ref}>
+                          <Button
+                            style={{ marginTop: "40px", marginLeft: "10px" }}
+                            onClick={handleClick}
+                            variant="outline-primary"
+                            size="sm"
+                          >
+                            참고
+                          </Button>
 
-                    <Form.Check
-                      type="checkbox"
-                      name="provider"
-                      label="전세권"
-                      value="LongtermRent"
-                      checked={inputVal.provider.includes("LongtermRent")}
-                      onChange={handleCheckboxChangeProvider}
-                      inline
-                    />
-                  </Form.Group>
-                  <Form.Group style={{ display: "flex", alignItems: "center" }}>
-                    <Form.Label>
-                      <h5 style={{ marginTop: "20px" }}>최초 설정 근저당</h5>
-                    </Form.Label>
-                    <div ref={refCollateral}>
+                          <Overlay
+                            show={show}
+                            target={target}
+                            placement="bottom"
+                            container={ref}
+                            containerPadding={20}
+                          >
+                            <Popover id="popover-contained ">
+                              <Popover.Body>
+                                1. 현재 등기부등본의 갑구/을구의 해당 사항을
+                                체크해주세요 <br />
+                                2. 해당 내용이 없으면 비워도 되요
+                              </Popover.Body>
+                            </Popover>
+                          </Overlay>
+                        </div>
+                      </Form.Group>
+                      <Form.Label>
+                        <h5>갑구 </h5>
+                      </Form.Label>
+                      <Form.Group>
+                        <Form.Check
+                          type="checkbox"
+                          name="purchaser"
+                          label="가처분"
+                          value="injunction"
+                          checked={inputVal.purchaser.includes("injunction")}
+                          onChange={handleCheckboxChangePurchaser}
+                          inline
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="purchaser"
+                          label="가등기"
+                          value="provisionalRegistration"
+                          checked={inputVal.purchaser.includes(
+                            "provisionalRegistration"
+                          )}
+                          onChange={handleCheckboxChangePurchaser}
+                          inline
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="purchaser"
+                          label="가압류 / 압류"
+                          value="provisionalSeizure"
+                          checked={inputVal.purchaser.includes(
+                            "provisionalSeizure"
+                          )}
+                          onChange={handleCheckboxChangePurchaser}
+                          inline
+                        />
+                        <Form.Check
+                          type="checkbox"
+                          name="purchaser"
+                          label="신탁"
+                          value="trust"
+                          checked={inputVal.purchaser.includes("trust")}
+                          onChange={handleCheckboxChangePurchaser}
+                          inline
+                        />
+                      </Form.Group>
+                      <Form.Label>
+                        <h5 style={{ marginTop: "20px" }}>을구 </h5>
+                      </Form.Label>
+                      <Form.Group>
+                        <Form.Check
+                          type="checkbox"
+                          name="provider"
+                          label="임차권"
+                          value="leasehold"
+                          checked={inputVal.provider.includes("leasehold")}
+                          onChange={handleCheckboxChangeProvider}
+                          inline
+                        />
+
+                        <Form.Check
+                          type="checkbox"
+                          name="provider"
+                          label="전세권"
+                          value="LongtermRent"
+                          checked={inputVal.provider.includes("LongtermRent")}
+                          onChange={handleCheckboxChangeProvider}
+                          inline
+                        />
+                      </Form.Group>
+                      <Form.Group
+                        style={{ display: "flex", alignItems: "center" }}
+                      >
+                        <Form.Label>
+                          <h5 style={{ marginTop: "20px" }}>
+                            최초 설정 근저당
+                          </h5>
+                        </Form.Label>
+                        <div ref={refCollateral}>
+                          <Button
+                            style={{ marginTop: "10px", marginLeft: "10px" }}
+                            onClick={handleClick2}
+                            variant="outline-primary"
+                            size="sm"
+                          >
+                            참고
+                          </Button>
+
+                          <Overlay
+                            show={showCollateral}
+                            target={targetCollateral}
+                            placement="bottom"
+                            container={refCollateral}
+                            containerPadding={20}
+                          >
+                            <Popover id="popover-contained">
+                              <Popover.Body>
+                                1. 근저당권 설정과 설정일자를 비워도 되요!{" "}
+                                <br />
+                                2. 입력하면 최우선변제권을 알 수 있어요
+                              </Popover.Body>
+                            </Popover>
+                          </Overlay>
+                        </div>
+                      </Form.Group>
+                      <Form.Control
+                        type="text"
+                        name="collateral"
+                        value={inputVal.collateral}
+                        onChange={handleInputChange}
+                      />
+                      <Form.Label>
+                        <h5 style={{ marginTop: "20px" }}>
+                          최초 근저당권 설정일자
+                        </h5>
+                      </Form.Label>
+                      <Form.Control
+                        type="date"
+                        value={dateInput}
+                        onChange={handleDateChange}
+                        min={minDate}
+                      />
                       <Button
-                        style={{ marginTop: "10px", marginLeft: "10px" }}
-                        onClick={handleClick2}
-                        variant="outline-primary"
-                        size="sm"
+                        style={{
+                          width: "100%",
+                          marginBottom: "20px",
+                          marginTop: "30px",
+                        }}
+                        type="submit"
                       >
-                        참고
+                        진단하기
                       </Button>
-
-                      <Overlay
-                        show={showCollateral}
-                        target={targetCollateral}
-                        placement="bottom"
-                        container={refCollateral}
-                        containerPadding={20}
-                      >
-                        <Popover id="popover-contained">
-                          <Popover.Body>
-                            1. 근저당권 설정과 설정일자를 비워도 되요! <br />
-                            2. 입력하면 최우선변제권을 알 수 있어요
-                          </Popover.Body>
-                        </Popover>
-                      </Overlay>
-                    </div>
-                  </Form.Group>
-                  <Form.Control
-                    type="text"
-                    name="collateral"
-                    value={inputVal.collateral}
-                    onChange={handleInputChange}
-                  />
-                  <Form.Label>
-                    <h5 style={{ marginTop: "20px" }}>
-                      최초 근저당권 설정일자
-                    </h5>
-                  </Form.Label>
-                  <Form.Control
-                    type="date"
-                    value={dateInput}
-                    onChange={handleDateChange}
-                    min={minDate}
-                  />
-                  <Button
-                    style={{
-                      width: "100%",
-                      marginBottom: "20px",
-                      marginTop: "30px",
-                    }}
-                    type="submit"
-                  >
-                    진단하기
-                  </Button>
-                </Form.Group>
-              </Form>
-            </Stack>
+                    </Form.Group>
+                  </Form>
+                </Stack>
+              </Tab>
+              <Tab eventKey="CheckHomeNoRegister" title="등기부등본 X">
+                <CheckHomeNoRegister />
+              </Tab>
+            </Tabs>
           </section>
         </Container>
       )}
