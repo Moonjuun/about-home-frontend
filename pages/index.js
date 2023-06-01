@@ -21,6 +21,10 @@ export default function Home() {
         <meta name="robots" content="index,follow" />
 
         <meta
+          property="og:site_name"
+          content="어바웃홈, 우리집은 안전할까? 우리집 정보 확인하기"
+        />
+        <meta
           property="og:image"
           content="/assets/main/mod1_main1.png"
           alt="우리집은 안전할까? 우리집 정보 확인하기"
