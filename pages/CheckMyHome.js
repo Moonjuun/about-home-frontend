@@ -301,7 +301,12 @@ const CheckMyHome = () => {
                   뽑으러 가기
                 </a>
                 <br />
-                <a href="">뽑을줄 모른다면?</a>
+                <a
+                  href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EB%93%B1%EA%B8%B0%EB%B6%80%EB%93%B1%EB%B3%B8+%EB%BD%91%EB%8A%94%EB%B2%95"
+                  target="_blank"
+                >
+                  뽑을줄 모른다면?
+                </a>
               </div>
             </Collapse>
           </div>
