@@ -1,7 +1,8 @@
 import React from "react";
 import { Table, Container } from "react-bootstrap";
 
-const BoardList = () => {
+const BoardList = ({ results }) => {
+  console.log("list", results);
   return (
     <>
       <h2 style={{ marginTop: "20px", marginBottom: "20px" }}>공지사항</h2>
