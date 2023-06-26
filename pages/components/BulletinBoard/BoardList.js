@@ -19,9 +19,9 @@ const BoardList = (noticeChild) => {
           </thead>
           <tbody>
             {noticeChild.noticeChild &&
-              noticeChild.noticeChild.map((notice, index) => (
+              noticeChild.noticeChild.reverse().map((notice, index) => (
                 <tr key={notice.id}>
-                  <td>{index + 1}</td>
+                  <td>{noticeChild.noticeChild.length - index}</td>
                   <td>
                     <a href={notice.id}>{notice.child_page.title}</a>
                   </td>
