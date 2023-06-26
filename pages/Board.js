@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import BoardList from "./components/BulletinBoard/BoardList";
 import { Container } from "react-bootstrap";
 import Head from "next/head";
 import { Client } from "@notionhq/client";
 
-const Board = ({ results }) => {
+const Board = ({ results, notices, noticeChild }) => {
   useEffect(() => {
-    console.log(results);
+    console.log("results", results);
+    console.log("notices", notices);
+    console.log("noticeChild", noticeChild);
   });
 
   return (
@@ -32,7 +34,7 @@ const Board = ({ results }) => {
         <meta name="twitter:description" content="어바웃홈 about-home" />
       </Head>
       <Container style={{ minHeight: "80vh" }}>
-        <BoardList results={results}></BoardList>
+        <BoardList noticeChild={noticeChild}></BoardList>
       </Container>
     </>
   );
@@ -44,14 +46,25 @@ export async function getStaticProps() {
     auth: process.env.NOTION_API_KEY,
     notionVersion: "2022-06-28",
   });
+  //DB 접근
   const databaseId = process.env.NOTION_DATABASE_ID;
   const res = await notion.databases.query({ database_id: databaseId });
 
-  console.log(res);
+  // 공지사항 Block 접근
+  const blockId = res.results[0].id;
+  const noticeData = await notion.blocks.retrieve({ block_id: blockId });
+
+  // 공지사항 Block 밑에 있는 Child 접근
+  const noticeChildId = noticeData.id;
+  const blockChildData = await notion.blocks.children.list({
+    block_id: noticeChildId,
+  });
 
   return {
     props: {
       results: res.results,
+      notices: noticeData,
+      noticeChild: blockChildData.results,
     },
   };
 }
