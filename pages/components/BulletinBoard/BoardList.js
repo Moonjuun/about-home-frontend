@@ -1,14 +1,14 @@
 import React from "react";
 import { Table, Container } from "react-bootstrap";
+import Link from "next/link";
 
-const BoardList = (noticeChild) => {
-  console.log("noticeChild", noticeChild);
-
+const BoardList = ({ noticeChild }) => {
+  console.log(noticeChild);
   return (
     <>
       <h2 style={{ marginTop: "20px", marginBottom: "20px" }}>공지사항</h2>
       <Container>
-        <Table striped bordered hover style={{ textAlign: "center" }}>
+        <Table bordered hover style={{ textAlign: "center" }}>
           <thead>
             <tr>
               <th style={{ width: "10%" }}>번호</th>
@@ -18,14 +18,22 @@ const BoardList = (noticeChild) => {
             </tr>
           </thead>
           <tbody>
-            {noticeChild.noticeChild &&
-              noticeChild.noticeChild.reverse().map((notice, index) => (
+            {noticeChild &&
+              noticeChild.reverse().map((notice, index) => (
                 <tr key={notice.id}>
-                  <td>{noticeChild.noticeChild.length - index}</td>
+                  <td>{noticeChild.length - index}</td>
                   <td>
-                    <a href={notice.id}>{notice.child_page.title}</a>
+                    <Link
+                      href={`https://choiii.notion.site/${notice.id.replace(
+                        /-/g,
+                        ""
+                      )}`}
+                      style={{ textDecoration: "none" }}
+                    >
+                      {notice.child_page.title}
+                    </Link>
                   </td>
-                  <td>운영자</td>
+                  <td style={{ color: "#0D6EFD" }}>운영자</td>
                   <td>{notice.created_time.slice(0, 10)}</td>
                 </tr>
               ))}

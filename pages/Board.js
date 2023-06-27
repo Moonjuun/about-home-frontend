@@ -3,13 +3,18 @@ import BoardList from "./components/BulletinBoard/BoardList";
 import { Container } from "react-bootstrap";
 import Head from "next/head";
 import { Client } from "@notionhq/client";
+// import { NotionToMarkdown } from "notion-to-md";
 
-const Board = ({ results, notices, noticeChild }) => {
-  useEffect(() => {
-    console.log("results", results);
-    console.log("notices", notices);
-    console.log("noticeChild", noticeChild);
-  });
+const Board = ({ noticeChild }) => {
+  // useEffect(() => {
+  //   console.log("results", results);
+  //   console.log("notices", notices);
+  //   console.log("noticeChild", noticeChild);
+  // });
+
+  const filteredNoticeChild = noticeChild
+    .filter((notice) => notice.child_page) // child_page가 있는 객체만 필터링
+    .map((notice) => notice);
 
   return (
     <>
@@ -34,7 +39,7 @@ const Board = ({ results, notices, noticeChild }) => {
         <meta name="twitter:description" content="어바웃홈 about-home" />
       </Head>
       <Container style={{ minHeight: "80vh" }}>
-        <BoardList noticeChild={noticeChild}></BoardList>
+        <BoardList noticeChild={filteredNoticeChild}></BoardList>
       </Container>
     </>
   );
@@ -60,11 +65,19 @@ export async function getStaticProps() {
     block_id: noticeChildId,
   });
 
+  // 받은 id를 마크다운으로 변환
+  // const n2m = new NotionToMarkdown({ notionClient: notion });
+
+  // const mdblocks = await n2m.pageToMarkdown(noticeChildId);
+  // const mdString = n2m.toMarkdownString(mdblocks);
+  // console.log(mdString.parent);
+
   return {
     props: {
-      results: res.results,
-      notices: noticeData,
+      // results: res.results,
+      // notices: noticeData,
       noticeChild: blockChildData.results,
+      // mdString: mdString.parent,
     },
   };
 }
