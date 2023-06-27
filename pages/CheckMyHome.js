@@ -153,6 +153,7 @@ const CheckMyHome = () => {
     let fullAddress = data.address;
     let extraAddress = "";
     let jibunAddress = "";
+
     if (data.addressType === "R") {
       if (data.bname !== "") {
         extraAddress += data.bname;
@@ -183,7 +184,7 @@ const CheckMyHome = () => {
     setJibun(jibunAddress);
     setBuildingcode(data.buildingCode);
     setPostcode(data.zonecode);
-    setAddress(extraAddress);
+    setAddress(data.address);
   };
 
   // 진단하기

@@ -68,7 +68,7 @@ const CheckHomeNoRegister = () => {
     setJibun(jibunAddress);
     setBuildingcode(data.buildingCode);
     setPostcode(data.zonecode);
-    setAddress(extraAddress);
+    setAddress(data.address);
   };
 
   // 진단하기
