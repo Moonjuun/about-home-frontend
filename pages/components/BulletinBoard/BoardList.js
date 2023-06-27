@@ -13,8 +13,8 @@ const BoardList = ({ noticeChild }) => {
             <tr>
               <th style={{ width: "10%" }}>번호</th>
               <th style={{ width: "50%" }}>제목</th>
-              <th style={{ width: "15%" }}>작성자</th>
-              <th style={{ width: "15%" }}>날짜</th>
+              <th style={{ width: "20%" }}>작성자</th>
+              <th style={{ width: "20%" }}>날짜</th>
             </tr>
           </thead>
           <tbody>
@@ -34,7 +34,11 @@ const BoardList = ({ noticeChild }) => {
                     </Link>
                   </td>
                   <td style={{ color: "#0D6EFD" }}>운영자</td>
-                  <td>{notice.created_time.slice(0, 10)}</td>
+                  <td>
+                    {notice.created_time.slice(0, 4)}.{" "}
+                    {notice.created_time.slice(5, 7)}.{" "}
+                    {notice.created_time.slice(8, 10)}
+                  </td>
                 </tr>
               ))}
           </tbody>
