@@ -3,7 +3,6 @@ import { Table, Container } from "react-bootstrap";
 import Link from "next/link";
 
 const BoardList = ({ noticeChild }) => {
-  console.log(noticeChild);
   return (
     <>
       <h2 style={{ marginTop: "20px", marginBottom: "20px" }}>공지사항</h2>
