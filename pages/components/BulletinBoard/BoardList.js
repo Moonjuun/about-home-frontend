@@ -3,8 +3,6 @@ import { Table, Container } from "react-bootstrap";
 import Link from "next/link";
 
 const BoardList = ({ noticeChild }) => {
-  console.log(noticeChild);
-
   // noticeChild 배열을 역순으로 만듭니다.
   const reversedNoticeChild = noticeChild ? [...noticeChild].reverse() : [];
 
