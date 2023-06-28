@@ -45,7 +45,7 @@ const Board = ({ noticeChild }) => {
   );
 };
 
-// 처음 빌드될때 데이터를 한번 가져옴
+// 빌드될때마다 데이터를 가져옴
 export async function getServerSideProps() {
   const notion = new Client({
     auth: process.env.NOTION_API_KEY,

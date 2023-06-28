@@ -36,9 +36,9 @@ const URLShareButton = styled.button`
   font-weight: 500;
   font-size: 18px;
   cursor: pointer;
-  background-color: #7362ff;
+  background-color: ${({ isCopied }) => (isCopied ? "#a99fee" : "#7362ff")};
   &:hover {
-    background-color: #a99fee;
+    background-color: ${({ isCopied }) => (isCopied ? "#a99fee" : "#a99fee")};
   }
   padding: 0px;
 `;
@@ -61,6 +61,7 @@ const KakaoIcon = styled.img`
 const Footer = () => {
   // window 객체에서 현재 url 가져오기
   const [currentUrl, setCurrentUrl] = useState("");
+  const [isCopied, setIsCopied] = useState(false); // 복사 완료 상태를 저장하는 상태 변수
 
   // useEffect 내에서 window 객체를 사용하기 위해 useEffect 내부에서 처리해야 함
   useEffect(() => {
@@ -88,6 +89,10 @@ const Footer = () => {
     window.Kakao.Share.sendScrap({
       requestUrl: currentUrl,
     });
+  };
+
+  const handleCopyUrl = () => {
+    setIsCopied(true); // 복사 완료 상태를 true로 설정
   };
 
   return (
@@ -120,8 +125,10 @@ const Footer = () => {
                 borderRadius={24}
               ></TwitterIcon>
             </TwitterShareButton>
-            <CopyToClipboard text={currentUrl}>
-              <URLShareButton>URL</URLShareButton>
+            <CopyToClipboard text={currentUrl} onCopy={handleCopyUrl}>
+              <URLShareButton isCopied={isCopied}>
+                {isCopied ? "Copy" : "URL"}
+              </URLShareButton>
             </CopyToClipboard>
             <KakaoButtonWrapper>
               <KakaoShareButton onClick={handleKakaoButton}>
