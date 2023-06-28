@@ -13,6 +13,13 @@ const Header = () => {
     <Navbar bg="primary" variant="dark" expand="lg" onSelect={handleSelect}>
       <Container>
         <Navbar.Brand href="/" style={{ marginLeft: "10px" }}>
+          <img
+            alt=""
+            src="/logo.png"
+            width="30"
+            height="30"
+            className="d-inline-block align-top"
+          />{" "}
           어바웃홈
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
