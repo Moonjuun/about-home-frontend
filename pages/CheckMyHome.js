@@ -303,7 +303,7 @@ const CheckMyHome = () => {
                 </a>
                 <br />
                 <a
-                  href="https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EB%93%B1%EA%B8%B0%EB%B6%80%EB%93%B1%EB%B3%B8+%EB%BD%91%EB%8A%94%EB%B2%95"
+                  href="https://www.notion.so/choiii/953dea38d0bf4d08959b1380afc3ebee?pvs=4"
                   target="_blank"
                 >
                   뽑을줄 모른다면?
@@ -472,7 +472,15 @@ const CheckMyHome = () => {
                               <Popover.Body>
                                 1. 현재 등기부등본의 갑구/을구의 해당 사항을
                                 체크해주세요 <br />
-                                2. 해당 내용이 없으면 비워도 되요
+                                2. 해당 내용이 없으면 비워도 되요 <br />
+                                3. 잘모르겠다면?{" "}
+                                <a
+                                  href="https://www.notion.so/choiii/6efb6bb8645b4d498f1407163b6a80e8?pvs=4"
+                                  target="_blank"
+                                >
+                                  가이드
+                                </a>
+                                를 확인해보세요!
                               </Popover.Body>
                             </Popover>
                           </Overlay>
@@ -590,7 +598,15 @@ const CheckMyHome = () => {
                               <Popover.Body>
                                 1. 근저당권 설정과 설정일자를 비워도 되요!{" "}
                                 <br />
-                                2. 입력하면 최우선변제권을 알 수 있어요
+                                2. 입력하면 최우선변제권을 알 수 있어요 <br />
+                                3. 잘모르겠다면?{" "}
+                                <a
+                                  href="https://www.notion.so/choiii/6efb6bb8645b4d498f1407163b6a80e8?pvs=4"
+                                  target="_blank"
+                                >
+                                  가이드
+                                </a>
+                                를 확인해보세요!
                               </Popover.Body>
                             </Popover>
                           </Overlay>

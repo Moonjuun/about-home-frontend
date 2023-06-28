@@ -111,3 +111,4 @@ $ npm start
 - 1.2.3 Footer 공유하기 URL 버튼 클릭시 사용자 피드백
 - 1.2.4 Header 로고 추가
 - 1.2.5 getServerSideProps에서 getStaticProps로 변경, revalidate로 3시간마다 업데이트
+- 1.2.6 진단페이지 사용자 편의성을 위한 참고 툴팁에 가이드 추가
