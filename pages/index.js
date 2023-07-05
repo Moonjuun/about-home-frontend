@@ -1,9 +1,27 @@
+import React, { useEffect } from "react";
 import Head from "next/head";
 import { Container } from "react-bootstrap";
 
 import MainPage from "./MainPage";
 
 export default function Home() {
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent;
+    const isIE =
+      userAgent.indexOf("MSIE ") > -1 || userAgent.indexOf("Trident/") > -1;
+
+    if (isIE) {
+      const message = document.createElement("div");
+      message.innerHTML =
+        "이 웹 페이지는 Internet Explorer를 지원하지 않습니다. 크롬이나 사파리와 같은 다른 브라우저를 사용해주세요.";
+      message.style.backgroundColor = "yellow";
+      message.style.padding = "10px";
+      message.style.textAlign = "center";
+      message.style.fontWeight = "bold";
+      document.body.insertBefore(message, document.body.firstChild);
+    }
+  }, []);
+
   return (
     <>
       <Head>
