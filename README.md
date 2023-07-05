@@ -112,3 +112,4 @@ $ npm start
 - 1.2.4 Header 로고 추가
 - 1.2.5 getServerSideProps에서 getStaticProps로 변경, revalidate로 3시간마다 업데이트
 - 1.2.6 진단페이지 사용자 편의성을 위한 참고 툴팁에 가이드 추가
+- 1.2.7 크로스 브라우징 대응, ie 브라우저 접속시 safari, chrome으로 접속 요청 알림
